@@ -1,9 +1,21 @@
+import java.sql.Date;
+
 public class Employee {
     public int Id;
     public String firstName;
     public String lastName;
     public float basicPay;
+    public Date Start_Date;
 
+
+    public Date getStart_Date() {
+        return Start_Date;
+    }
+
+    public void setStart_Date(Date start_Date) {
+        this.Start_Date = start_Date;
+    }
+    
     public float getBasicPay() {
         return basicPay;
     }
@@ -28,9 +40,9 @@ public class Employee {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    @Override
+     @Override
     public String toString() {
         return "Employee [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", basicPay=" + basicPay
-                + "]";
+                + ", Start_Date=" + Start_Date + "]";
     }
 }
