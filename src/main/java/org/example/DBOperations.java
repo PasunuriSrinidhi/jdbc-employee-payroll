@@ -146,6 +146,21 @@ public class DBOperations {
         }
     }
 
+    // method to remove the employee
+    public static void removeEmployee(String name) {
+        String sqlQuery = "update employee_payroll set is_active = false where name = ?;";
+        try (
+                Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement(sqlQuery);) {
+            statement.setString(1, name);
+            statement.executeUpdate();
+            System.out.println("Employee removed successfully!\n");
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        }
+    }
+    
     // method to update salary of particular entry
     public static void updateSalary(double salary, String name) {
         String sqlUpdateSalary = "update employee_payroll set salary = ? where name = ?;";
