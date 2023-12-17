@@ -14,6 +14,8 @@ public class EmployeePayroll
         int choice = s.nextInt();
 
         switch(choice) {
+            case 0:
+                System.exit(0);
             case 1:
                 insertData();
                 break;
