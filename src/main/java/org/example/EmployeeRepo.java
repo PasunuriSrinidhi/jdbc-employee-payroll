@@ -11,56 +11,20 @@ public class EmployeeRepo {
 
     public void insertRecord(EmployeeDetails details) throws ClassNotFoundException, SQLException {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement prestatement = null;
         try {
             //Step1: Load & Register Driver Class
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 
             //Step2: Establish a MySql Connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
-
-             connection.setAutoCommit(false);
             
             //Step3: Create Statement
-            statement = connection.createStatement();
+            String query =" select * from employee_payroll ";
+            prestatement = connection.prepareStatement(query);
 
             //Step4: Execute Query
-            String query = "insert into employee_payroll(FirstName,LastName) value('"+details.getFirstName()+"','"+details.getLastName()+"')";
-            int result = statement.executeUpdate(query);
-            connection.commit();
-            System.out.print(result + " rows affected");
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if(connection != null) {
-                statement.close();
-            }
-            if(statement != null) {
-                connection.close();
-            }
-        }
-    }
-public List<Employee> findAll() throws SQLException {
-        List<Employee> details=new ArrayList<>();
-
-        Connection connection = null;
-        Statement statement = null;
-        try {
-            //Step1: Load & Register Driver Class
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
-
-            //Step2: Establish a MySql Connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
-
-            //Step3: Create Statement
-            statement = connection.createStatement();
-
-            //Step4: Execute Query
-            String query =" select * from employee_payroll";
-            ResultSet resultset = statement.executeQuery(query);
+            ResultSet resultset = prestatement.executeQuery();
 
             while(resultset.next()) {
                 Employee info = new Employee();
@@ -86,19 +50,20 @@ public List<Employee> findAll() throws SQLException {
         }finally {
 
             if(connection != null) {
-                statement.close();
+                prestatement.close();
             }
-            if(statement != null) {
+            if(prestatement != null) {
                 connection.close();
             }
         }
         return details;
     }
 
- public void updatedata(int id, float basicPay) throws SQLException {
+    public void updatedata(int id, float basicPay) throws SQLException {
         Connection con = null;
         PreparedStatement prestatement = null;
         try {
+
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "root");
 
