@@ -19,9 +19,13 @@ public class EmployeePayroll
             case 2:
                 reteriveData();
                 break;
+              case 3:
+                UpdateData();
+                break;
         }
 
     }
+
 
     private static void reteriveData() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
@@ -41,4 +45,17 @@ public class EmployeePayroll
         repo.insertRecord(details);
 
     }
+ private static void UpdateData() throws SQLException {
+
+        System.out.println("Enter Id");
+        int id = s.nextInt();
+
+        System.out.println("Enter BasicPay");
+        float basicPay = s.nextFloat();
+
+        EmployeeRepo repo = new EmployeeRepo();
+        repo.updatedata(id, basicPay);
+
+    }
+
 }
