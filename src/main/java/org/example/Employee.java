@@ -68,10 +68,10 @@ public class Employee {
         this.phone = phone;
         this.address = address;
         this.salary = salary;
-        this.deductions = deductions;
-        this.taxable_pay = taxable_pay;
-        this.income_tax = income_tax;
-        this.net_pay = net_pay;
+        this.deductions = this.salary * 0.2;
+        this.taxable_pay = this.salary - this.deductions;
+        this.income_tax =  this.taxable_pay * 0.1;
+        this.net_pay = this.salary - this.income_tax;
         this.department = department;
     }
 
