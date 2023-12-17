@@ -49,6 +49,11 @@ public class EmpPayrollService {
         return DBOperations.getStatsByGender();
     }
 
+    // method to remove employee from db
+    public void removeEmployee(String name) {
+        DBOperations.removeEmployee(name);
+    }
+
     // FILE IO FUNCTIONS
 
     public String getFilePath() {
