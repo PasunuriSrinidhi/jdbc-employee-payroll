@@ -9,7 +9,8 @@ public class EmployeePayroll
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
          Scanner s = new Scanner(System.in);
-        System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data");
+         System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
+                + "\nPress 3 to Update data");
         int choice = s.nextInt();
 
         switch(choice) {
